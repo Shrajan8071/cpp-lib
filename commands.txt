@@ -1,0 +1,46 @@
+calc_functions.h
+calc_functions.cpp
+
+g++ -c -O3 -Wall -fPIC calc_functions.cpp -o calc_functions.o
+g++ -shared -o libcalc_functions.dll calc_functions.o
+
+main.cpp
+
+g++ -o calculator main.cpp -L. -lcalc_functions
+
+.\calculator.exe
+
+
+PS E:\library project> g++ -c -O3 -Wall -fPIC calc_functions.cpp -o calc_functions.o
+PS E:\library project> g++ -shared -o libcalc_functions.dll calc_functions.o
+PS E:\library project> g++ -o calculator main.cpp -L. -lcalc_functions
+PS E:\library project> .\calculator.exe
+Addition: 15
+Subtraction: 5
+Multiplication: 50
+Division: 2
+PS E:\library project> 
+
+
+........
+
+Compilation:
+
+They need to compile their test.cpp file along with the necessary flags to link against the shared library.
+
+Here's the command they should use:
+
+bash
+Copy code
+g++ -o test test.cpp -L<path_to_shared_library_directory> -lcalc_functions
+Replace <path_to_shared_library_directory> with the path to the directory containing libcalc_functions.dll. If the shared library is in the same directory as the test.cpp file, they can use -L..
+
+./test
+
+.......
+
+method to combine :
+
+g++ -O3 -Wall -fPIC -shared -o libcalc_functions.dll calc_functions.cpp
+g++ -o test test.cpp -L. -lcalc_functions
+.\test
